@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Проект "Комменты"</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="stylesComments.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="comments" id="comments-list">
+            <li class="comment">
+                <div class="comment-header">
+                    <div>Глеб Фокин</div>
+                    <div>12.02.24 12:18</div>
+                </div>
+                <div class="comment-body">
+                    <div class="comment-text">
+                        Это будет первый комментарий на этой странице
+                    </div>
+                </div>
+                <div class="comment-footer">
+                    <div class="likes">
+                        <span class="likes-counter">3</span>
+                        <button class="like-button"></button>
+                    </div>
+                </div>
+            </li>
+            <li class="comment">
+                <div class="comment-header">
+                    <div>Варвара Н.</div>
+                    <div>13.02.24 19:22</div>
+                </div>
+                <div class="comment-body">
+                    <div class="comment-text">
+                        Мне нравится как оформлена эта страница! ❤
+                    </div>
+                </div>
+                <div class="comment-footer">
+                    <div class="likes">
+                        <span class="likes-counter">75</span>
+                        <button class="like-button -active-like"></button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="add-form">
+            <input type="text" class="add-form-name" placeholder="Введите ваше имя" id="name-input" />
+            <textarea type="textarea" class="add-form-text" placeholder="Введите ваш коментарий" rows="4"
+                id="comment-input"></textarea>
+            <div class="add-form-row">
+                <button class="add-form-button" id="add-button">Написать</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const commentsList = document.getElementById('comments-list');
+    const nameInput = document.getElementById('name-input');
+    const commentInput = document.getElementById('comment-input');
+    const addButton = document.getElementById('add-button');
+
+    addButton.addEventListener('click', function () {
+        const name = nameInput.value.trim();
+        const commentText = commentInput.value.trim();
+
+
+        if (name === '' || commentText === '') {
+            alert('Пожалуйста, заполните все поля.');
+            return;
+        }
+
+
+        const newComment = document.createElement('li');
+        newComment.className = 'comment';
+
+
+        const commentHeader = document.createElement('div');
+        commentHeader.className = 'comment-header';
+
+        const authorName = document.createElement('div');
+        authorName.textContent = name;
+
+        const commentDate = document.createElement('div');
+        const currentDate = new Date();
+        commentDate.textContent = currentDate.toLocaleString();
+
+        commentHeader.appendChild(authorName);
+        commentHeader.appendChild(commentDate);
+
+        // Создаем тело комментария
+        const commentBody = document.createElement('div');
+        commentBody.className = 'comment-body';
+
+        const commentTextElement = document.createElement('div');
+        commentTextElement.className = 'comment-text';
+        commentTextElement.textContent = commentText;
+
+        commentBody.appendChild(commentTextElement);
+
+        // Создаем футер комментария
+        const commentFooter = document.createElement('div');
+        commentFooter.className = 'comment-footer';
+
+        const likesSection = document.createElement('div');
+        likesSection.className = 'likes';
+
+        const likesCounter = document.createElement('span');
+        likesCounter.className = 'likes-counter';
+        likesCounter.textContent = '0';
+
+        const likeButton = document.createElement('button');
+        likeButton.className = 'like-button';
+
+        likesSection.appendChild(likesCounter);
+        likesSection.appendChild(likeButton);
+
+        commentFooter.appendChild(likesSection);
+
+
+        newComment.appendChild(commentHeader);
+        newComment.appendChild(commentBody);
+        newComment.appendChild(commentFooter);
+
+
+        commentsList.appendChild(newComment);
+
+
+        nameInput.value = '';
+        commentInput.value = '';
+    });
+
+</script>
+
+</html>
