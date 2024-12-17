@@ -90,7 +90,6 @@
         commentHeader.appendChild(authorName);
         commentHeader.appendChild(commentDate);
 
-        // Создаем тело комментария
         const commentBody = document.createElement('div');
         commentBody.className = 'comment-body';
 
@@ -100,7 +99,6 @@
 
         commentBody.appendChild(commentTextElement);
 
-        // Создаем футер комментария
         const commentFooter = document.createElement('div');
         commentFooter.className = 'comment-footer';
 
@@ -130,6 +128,24 @@
 
         nameInput.value = '';
         commentInput.value = '';
+    });
+
+    commentsList.addEventListener('click', function (event) {
+        if (event.target.classList.contains('like-button')) {
+            const likeButton = event.target;
+            const likesCounter = likeButton.parentElement.querySelector('.likes-counter');
+            let likesCount = parseInt(likesCounter.textContent);
+
+            if (likeButton.classList.contains('-active-like')) {
+                likeButton.classList.remove('-active-like');
+                likesCount--;
+            } else {
+                likeButton.classList.add('-active-like');
+                likesCount++;
+            }
+
+            likesCounter.textContent = likesCount;
+        }
     });
 
 </script>
