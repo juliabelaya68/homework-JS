@@ -8,14 +8,13 @@ export function initEventListeners() {
     const commentInput = document.getElementById('comment-input');
     const addButton = document.getElementById('add-button');
 
-    // Обработчик для лайков
+   
     document.addEventListener('click', (event) => {
         if (event.target.classList.contains('like-button')) {
             handleLikeClick(event);
         }
     });
 
-    // Обработчик для клика по комментарию
     document.addEventListener('click', (event) => {
         const commentElement = event.target.closest('.comment');
         if (commentElement && !event.target.classList.contains('like-button')) {

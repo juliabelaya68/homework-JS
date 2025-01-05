@@ -149,6 +149,8 @@ body {
 .reply-button:hover {
   opacity: 0.9;
 }
-
+.error {
+  background-color: rgb(255, 0, 0);
+}
 
   
